@@ -2,15 +2,12 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const genres = require('./route/genres');
+const home = require('./route/home');
 
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use('/api/genres', genres);
-
-// welcome page
-app.get('/', (req, res) => {
-    return res.status(200).send('Welcome to Vidly');
-});
+app.use('/', home);
 
 // server information
 const PORT = process.env.PORT || 3000;
